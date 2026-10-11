@@ -1,0 +1,70 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /aladdin_portfolio_positions/{documentId} {
+      allow read, delete: if request.auth != null && resource.data.ownerId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.ownerId == request.auth.uid;
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    match /equity_research_notes/{documentId} {
+      allow read, delete: if request.auth != null && resource.data.ownerId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.ownerId == request.auth.uid;
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    match /financial_news_notes/{documentId} {
+      allow read, delete: if request.auth != null && resource.data.ownerId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.ownerId == request.auth.uid;
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    match /world_monitor_briefings/{documentId} {
+      allow read, delete: if request.auth != null && resource.data.ownerId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.ownerId == request.auth.uid;
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && request.resource.data.ownerId == request.auth.uid;
+    }
+
+    // Reference data is public. Writes require a trusted administrative service.
+    match /sp500_constituents/{documentId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /world_exchanges/{documentId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /maritime_vessels/{documentId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /maritime_ports/{documentId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /test/{documentId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

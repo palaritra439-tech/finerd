@@ -1,0 +1,143 @@
+{
+  "name": "finerd-terminal",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Finerd - Unified Cross-Asset Terminal & Enterprise Platform (desktop)",
+  "author": "Finerd",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "start": "node --experimental-strip-types server.ts",
+    "build": "vite build",
+    "build:licenses": "node scripts/build-licenses.mjs",
+    "build:server": "node scripts/build-server.mjs",
+    "build:icon": "node scripts/build-icon.cjs",
+    "build:app": "npm run build:icon && npm run build && npm run build:licenses && npm run build:server",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:dev": "npm run build:app && electron .",
+    "serve:website": "node website/serve.cjs",
+    "security:audit": "npm audit --audit-level=high",
+    "test": "node --import tsx --test tests/server.test.mjs tests/website.test.mjs tests/options-pricing.test.mjs tests/workspace-persistence.test.mjs tests/compliance.test.mjs tests/security.test.mjs tests/financial-instrument-catalog.test.mjs",
+    "clean": "node -e \"const fs=require('fs');for(const p of ['dist','build-server','release'])fs.rmSync(p,{recursive:true,force:true})\"",
+    "lint": "tsc --noEmit",
+    "pack:win": "npm run build:app && electron-builder --win --x64",
+    "pack:mac": "npm run build:app && electron-builder --mac --x64 --arm64",
+    "pack:linux": "npm run build:app && electron-builder --linux --x64",
+    "pack:website:win": "npm run build:icon && electron-builder --config electron-builder.website.json --win --x64",
+    "pack:website:mac": "npm run build:icon && electron-builder --config electron-builder.website.json --mac --x64 --arm64",
+    "pack:website:linux": "npm run build:icon && electron-builder --config electron-builder.website.json --linux --x64",
+    "dist:all": "npm run build:app && electron-builder --win --x64 --linux --x64"
+  },
+  "overrides": {
+    "@grpc/grpc-js": "^1.14.6"
+  },
+  "build": {
+    "appId": "com.finerd.terminal",
+    "productName": "Finerd Terminal",
+    "copyright": "Copyright © Finerd",
+    "asar": true,
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**",
+      "build-server/**",
+      "dist/**",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.png",
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "FinerdTerminal-Portable-${version}.${ext}"
+    },
+    "mac": {
+      "icon": "build/icon.png",
+      "category": "public.app-category.finance",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "artifactName": "FinerdTerminal-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Finance",
+      "artifactName": "FinerdTerminal-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/leaflet": "^1.9.22",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "firebase": "^12.19.0",
+    "firebase-admin": "^14.5.0",
+    "jspdf": "^4.2.1",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "nodemailer": "^10.1.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "stripe": "^23.0.0",
+    "three": "^0.186.1",
+    "vite": "^8.3.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.4.21",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "esbuild": "^0.28.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.21.0",
+    "typescript": "^7.0.2"
+  }
+}

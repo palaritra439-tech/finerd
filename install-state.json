@@ -1,0 +1,9 @@
+{
+    "electron":  false,
+    "nm":  0,
+    "vite":  false,
+    "esbuild":  false,
+    "builder":  false,
+    "lock":  false,
+    "logtail":  ""
+}

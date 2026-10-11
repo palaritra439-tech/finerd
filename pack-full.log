@@ -1,0 +1,65 @@
+
+> finerd-terminal@1.0.0 pack:win
+> npm run build:app && electron-builder --win --x64
+
+
+> finerd-terminal@1.0.0 build:app
+> npm run build:icon && npm run build && npm run build:server
+
+
+> finerd-terminal@1.0.0 build:icon
+> node scripts/build-icon.cjs
+
+Wrote D:\finerd-unified-cross-asset-terminal-enterprise-platform-oct-9-2026-8-45-41-pm\build\icon.png (12.1 KB)
+
+> finerd-terminal@1.0.0 build
+> vite build
+
+[33m(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vite.config.ts:11:27). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.[39m
+[36mvite v8.3.4 [32mbuilding client environment for production...[36m[39m
+transforming...
+✓ 1944 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                          1.68 kB │ gzip:   0.71 kB
+dist/assets/index-DFJ1s40Z.css         141.26 kB │ gzip:  25.59 kB
+dist/assets/purify.es-Dn3VvdGh.js       28.01 kB │ gzip:  11.07 kB
+dist/assets/index.es-Cvieq17u.js       151.38 kB │ gzip:  48.88 kB
+dist/assets/html2canvas-Dqqhzz7G.js    199.45 kB │ gzip:  46.76 kB
+dist/assets/index-CKOCKZ3Y.js        3,466.66 kB │ gzip: 905.61 kB
+
+[32m✓ built in 1.10s[39m
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+
+> finerd-terminal@1.0.0 build:server
+> node scripts/build-server.mjs
+
+▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+
+    server.ts:14:20:
+      14 │     : fileURLToPath(import.meta.url);
+         ╵                     ~~~~~~~~~~~
+
+  You need to set the output format to "esm" for "import.meta" to work correctly.
+
+1 warning
+
+  build-server\server.cjs  1.7mb
+
+Done in 68ms
+  • electron-builder  version=25.1.8 os=10.0.26200
+  • loaded configuration  file=package.json ("build" field)
+  • executing @electron/rebuild  electronVersion=33.4.11 arch=x64 buildFromSource=false appDir=./
+  • installing native dependencies  arch=x64
+  • completed installing native dependencies
+  • packaging       platform=win32 arch=x64 electron=33.4.11 appOutDir=release\win-unpacked
+  • updating asar integrity executable resource  executablePath=release\win-unpacked\Finerd Terminal.exe
+  • building        target=portable file=release\FinerdTerminal-Portable-1.0.0.exe archs=x64
+  • signing with signtool.exe  path=release\FinerdTerminal-Portable-1.0.0.exe
+  • no signing info identified, signing is skipped  signHook=false cscInfo=null

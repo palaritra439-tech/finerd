@@ -1,0 +1,132 @@
+{
+  "entities": {
+    "Sp500Constituent": {
+      "title": "Sp500Constituent",
+      "description": "Represents a company constituent of the S&P 500 Index.",
+      "type": "object",
+      "properties": {
+        "ticker": { "type": "string", "description": "Stock symbol (e.g. AAPL, MSFT, NVDA)" },
+        "name": { "type": "string", "description": "Company legal name" },
+        "sector": { "type": "string", "description": "GICS Sector classification" },
+        "subIndustry": { "type": "string", "description": "GICS Sub-Industry classification" },
+        "weight": { "type": "number", "description": "S&P 500 Index weighting percentage" },
+        "marketCapBillions": { "type": "number", "description": "Market capitalization in Billions USD" },
+        "price": { "type": "number", "description": "Latest stock price in USD" },
+        "change": { "type": "number", "description": "Day price change in USD" },
+        "changePercent": { "type": "number", "description": "Day price change percentage" },
+        "peRatio": { "type": "number", "description": "Trailing Price-to-Earnings ratio" },
+        "forwardPe": { "type": "number", "description": "Forward P/E ratio" },
+        "dividendYield": { "type": "number", "description": "Annual dividend yield percentage" },
+        "beta": { "type": "number", "description": "3-Year Beta relative to S&P 500" },
+        "headquarters": { "type": "string", "description": "Corporate headquarters city and state/country" },
+        "dateAdded": { "type": "string", "description": "Date or year added to S&P 500" },
+        "cik": { "type": "string", "description": "SEC Central Index Key identifier" }
+      },
+      "required": ["ticker", "name", "sector", "price"]
+    },
+    "UserWatchlist": {
+      "title": "UserWatchlist",
+      "description": "Saved S&P 500 custom watchlists and portfolio filters.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique watchlist identifier" },
+        "name": { "type": "string", "description": "Name of custom watchlist" },
+        "tickers": { "type": "string", "description": "Comma separated tickers" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["id", "name"]
+    },
+    "MaritimeVessel": {
+      "title": "MaritimeVessel",
+      "description": "Global commercial ship AIS tracking data, voyage telemetry, and cargo manifest.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Vessel unique identifier" },
+        "name": { "type": "string", "description": "Vessel name" },
+        "imo": { "type": "number", "description": "International Maritime Organization number" },
+        "mmsi": { "type": "number", "description": "Maritime Mobile Service Identity" },
+        "flag": { "type": "string", "description": "Flag of registry" },
+        "vesselClass": { "type": "string", "description": "Vessel classification" },
+        "deadweightTonnage": { "type": "number", "description": "Deadweight tonnage (DWT)" },
+        "speedKnots": { "type": "number", "description": "Current speed in knots" },
+        "heading": { "type": "number", "description": "Heading degrees" },
+        "originPort": { "type": "string", "description": "Origin port name" },
+        "destinationPort": { "type": "string", "description": "Destination port name" },
+        "eta": { "type": "string", "description": "Estimated time of arrival" },
+        "cargoType": { "type": "string", "description": "Cargo type and specification" },
+        "cargoStatus": { "type": "string", "description": "Laden, in ballast, or loading" },
+        "cargoValueUsd": { "type": "number", "description": "Cargo valuation in USD" }
+      },
+      "required": ["id", "name", "imo", "vesselClass", "cargoStatus"]
+    },
+    "MaritimePortCongestion": {
+      "title": "MaritimePortCongestion",
+      "description": "Port congestion statistics, anchorage queues, and turnaround delays.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Port unique identifier" },
+        "name": { "type": "string", "description": "Port name" },
+        "country": { "type": "string", "description": "Country of operation" },
+        "region": { "type": "string", "description": "Geographical maritime region" },
+        "type": { "type": "string", "description": "Terminal type" },
+        "waitingVesselsCount": { "type": "number", "description": "Count of vessels in anchorage waiting" },
+        "averageBerthWaitDays": { "type": "number", "description": "Average berth waiting time in days" },
+        "status": { "type": "string", "description": "Congestion status level" },
+        "throughputAnnual": { "type": "string", "description": "Annual cargo throughput capacity" }
+      },
+      "required": ["id", "name", "waitingVesselsCount", "status"]
+    },
+    "WorldExchange": {
+      "title": "WorldExchange",
+      "description": "Global stock, derivatives, commodity, and financial exchange profile.",
+      "type": "object",
+      "properties": {
+        "mic": { "type": "string", "description": "ISO 10383 Market Identifier Code (e.g. XNYS, XLON, XJPX)" },
+        "code": { "type": "string", "description": "Exchange common ticker or acronym (e.g. NYSE, LSE, TSE)" },
+        "name": { "type": "string", "description": "Official legal name of the exchange" },
+        "country": { "type": "string", "description": "Jurisdiction country" },
+        "countryCode": { "type": "string", "description": "ISO 3166-1 alpha-2 country code" },
+        "city": { "type": "string", "description": "Headquarters city" },
+        "region": { "type": "string", "description": "Geographical market continent / region" },
+        "marketCapTrillionUsd": { "type": "number", "description": "Domestic equity market cap in Trillions USD" },
+        "listedCompaniesCount": { "type": "number", "description": "Number of active listed companies / issues" },
+        "dailyVolumeBillionUsd": { "type": "number", "description": "Average daily trading turnover in Billions USD" },
+        "primaryCurrency": { "type": "string", "description": "Primary trading quotation currency" },
+        "benchmarkIndex": { "type": "string", "description": "Flagship benchmark index (e.g. S&P 500, Nikkei 225)" },
+        "benchmarkIndexValue": { "type": "number", "description": "Latest index level" },
+        "benchmarkIndexChangePercent": { "type": "number", "description": "Day percentage change of benchmark" },
+        "operator": { "type": "string", "description": "Exchange holding company / operating entity" },
+        "regulatoryBody": { "type": "string", "description": "Primary regulatory authority (e.g. SEC, FCA, CSRC)" },
+        "settlementCycle": { "type": "string", "description": "Standard trade clearing settlement cycle (e.g. T+1, T+2)" },
+        "tradingHoursLocal": { "type": "string", "description": "Local standard trading session hours" },
+        "utcOffsetHours": { "type": "number", "description": "Standard UTC offset in hours" },
+        "tier": { "type": "string", "description": "Tier ranking by global market cap" },
+        "website": { "type": "string", "description": "Official exchange portal URL" },
+        "foundedYear": { "type": "number", "description": "Year established" }
+      },
+      "required": ["mic", "code", "name", "country", "region", "marketCapTrillionUsd"]
+    }
+  },
+  "firestore": {
+    "/sp500_constituents/{ticker}": {
+      "schema": "Sp500Constituent",
+      "description": "Constituents of the S&P 500 index with fundamental ratios and sector metadata."
+    },
+    "/sp500_watchlists/{id}": {
+      "schema": "UserWatchlist",
+      "description": "Custom watchlists and saved filter queries."
+    },
+    "/maritime_vessels/{vesselId}": {
+      "schema": "MaritimeVessel",
+      "description": "Real-time tracking of global commercial vessel fleet, positions, and cargo."
+    },
+    "/maritime_ports/{portId}": {
+      "schema": "MaritimePortCongestion",
+      "description": "Global port congestion, anchorages, and berth turnaround times."
+    },
+    "/world_exchanges/{mic}": {
+      "schema": "WorldExchange",
+      "description": "Comprehensive database of world financial, stock, derivatives, and commodity exchanges."
+    }
+  }
+}

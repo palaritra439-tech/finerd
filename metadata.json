@@ -1,0 +1,6 @@
+{
+  "name": "Finerd - Unified Cross-Asset Terminal & Enterprise Platform",
+  "description": "Unified institutional terminal integrating World Monitor (geopolitical live map, conflicts, bases, nuclear sites, prediction markets), TradingView & MATLAB quant, financial wire intel, World Exchanges database, S&P 500 DB, maritime tracking, OMS, and Aladdin risk.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

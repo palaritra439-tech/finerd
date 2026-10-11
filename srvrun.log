@@ -1,0 +1,4 @@
+[Finerd Terminal] Server listening on http://0.0.0.0:64992
+PORT=64992
+/api/market-data/health 200 len=223
+/ 200 len=1687

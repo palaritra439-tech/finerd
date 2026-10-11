@@ -1,0 +1,17 @@
+
+> finerd-terminal@1.0.0 build:server
+> node scripts/build-server.mjs
+
+▲ [WARNING] "import.meta" is not available with the "cjs" output format and will be empty [empty-import-meta]
+
+    server.ts:14:20:
+      14 │     : fileURLToPath(import.meta.url);
+         ╵                     ~~~~~~~~~~~
+
+  You need to set the output format to "esm" for "import.meta" to work correctly.
+
+1 warning
+
+  build-server\server.cjs  1.7mb
+
+Done in 69ms

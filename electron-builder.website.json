@@ -1,0 +1,56 @@
+{
+  "appId": "com.finerd.terminal.website",
+  "productName": "Finerd Terminal",
+  "copyright": "Copyright © Finerd",
+  "asar": true,
+  "directories": {
+    "output": "release/website-desktop",
+    "buildResources": "build"
+  },
+  "files": [
+    "electron/website-main.cjs",
+    "website/index.html",
+    "website/downloads/**",
+    "package.json"
+  ],
+  "extraMetadata": {
+    "main": "electron/website-main.cjs"
+  },
+  "win": {
+    "icon": "build/icon.png",
+    "signAndEditExecutable": false,
+    "target": [
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "artifactName": "FinerdTerminal-Website-Windows-${version}.${ext}"
+  },
+  "mac": {
+    "icon": "build/icon.png",
+    "category": "public.app-category.finance",
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      }
+    ],
+    "artifactName": "FinerdTerminal-Website-macOS-${arch}-${version}.${ext}"
+  },
+  "linux": {
+    "icon": "build/icon.png",
+    "category": "Finance",
+    "target": [
+      {
+        "target": "AppImage",
+        "arch": ["x64"]
+      },
+      {
+        "target": "deb",
+        "arch": ["x64"]
+      }
+    ],
+    "artifactName": "FinerdTerminal-Website-Linux-${arch}-${version}.${ext}"
+  }
+}
