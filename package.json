@@ -19,7 +19,7 @@
     "electron:dev": "npm run build:app && electron .",
     "serve:website": "node website/serve.cjs",
     "security:audit": "npm audit --audit-level=high",
-    "test": "node --import tsx --test tests/server.test.mjs tests/website.test.mjs tests/options-pricing.test.mjs tests/workspace-persistence.test.mjs tests/compliance.test.mjs tests/security.test.mjs tests/financial-instrument-catalog.test.mjs",
+    "test": "node --import tsx --test tests/server.test.mjs tests/local-auth.test.mjs tests/electron-session-secret.test.mjs tests/website.test.mjs tests/options-pricing.test.mjs tests/workspace-persistence.test.mjs tests/compliance.test.mjs tests/security.test.mjs tests/financial-instrument-catalog.test.mjs tests/terminal-features.test.mjs tests/chart-candles.test.mjs tests/market-update-batch.test.mjs tests/advanced-black-scholes.test.mjs tests/monte-carlo-projection.test.mjs tests/supply-chain-profile.test.mjs",
     "clean": "node -e \"const fs=require('fs');for(const p of ['dist','build-server','release'])fs.rmSync(p,{recursive:true,force:true})\"",
     "lint": "tsc --noEmit",
     "pack:win": "npm run build:app && electron-builder --win --x64",
@@ -50,7 +50,8 @@
     ],
     "win": {
       "icon": "build/icon.png",
-      "signAndEditExecutable": false,
+      "signAndEditExecutable": true,
+      "forceCodeSigning": true,
       "target": [
         {
           "target": "portable",
@@ -121,7 +122,8 @@
     "react-dom": "^19.0.1",
     "stripe": "^23.0.0",
     "three": "^0.186.1",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "ws": "8.18.3"
   },
   "devDependencies": {
     "@capacitor/android": "^8.5.3",
@@ -132,6 +134,7 @@
     "@types/node": "^22.14.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@types/ws": "^8.18.1",
     "autoprefixer": "^10.4.21",
     "electron": "^33.2.0",
     "electron-builder": "^25.1.8",
