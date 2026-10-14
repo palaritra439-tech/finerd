@@ -1,6 +1,15 @@
 {
   "appId": "com.finerd.terminal",
   "appName": "Finerd Terminal",
-  "webDir": "website",
-  "android": {}
+  "webDir": "dist",
+  "server": {
+    "allowNavigation": ["localhost"]
+  },
+  "android": {},
+  "plugins": {
+    "Nodejs": {
+      "nodeDir": "nodejs",
+      "startMode": "auto"
+    }
+  }
 }
